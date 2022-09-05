@@ -30,10 +30,13 @@
 <meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220902204008420.png">
 <meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220902204935633.png">
 <meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220904173809620.png">
-<meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/Jimage-20220904202134953.png">
+<meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220904202134953.png">
 <meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220904203253950.png">
+<meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220905155330106.png">
+<meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220905175211180.png">
+<meta property="og:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220905175255605.png">
 <meta property="article:published_time" content="2022-09-02T14:11:13.763Z">
-<meta property="article:modified_time" content="2022-09-04T12:33:17.812Z">
+<meta property="article:modified_time" content="2022-09-05T10:32:09.514Z">
 <meta property="article:author" content="千珏">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://come-across.top/2022/09/02/Java%20Web/image-20220902204008420.png">
@@ -203,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-04 20:33:17" itemprop="dateModified" datetime="2022-09-04T20:33:17+08:00">2022-09-04</time>
+                <time title="修改时间：2022-09-05 18:32:09" itemprop="dateModified" datetime="2022-09-05T18:32:09+08:00">2022-09-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,14 +231,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -249,6 +252,18 @@
       
         <h1 id="Java-Web"><a href="#Java-Web" class="headerlink" title="Java Web"></a>Java Web</h1><span id="more"></span>
 
+<hr>
+<p>特殊记忆点：</p>
+<ol>
+<li>#{}:会将其替换为？，为了防止SQL注入</li>
+<li>${}:拼sql,会存在SQL	注入问题</li>
+<li>使用时机：<ul>
+<li>参数传递的时候：#{}</li>
+<li>表名或者列名不固定的情况下：${}会存在SQL注入的情况</li>
+</ul>
+</li>
+</ol>
+<hr>
 <h2 id="1-jdbc"><a href="#1-jdbc" class="headerlink" title="(1)jdbc"></a>(1)jdbc</h2><p>所需jar（5.1.49）包：<a target="_blank" rel="noopener" href="https://pan.baidu.com/disk/main#/index?category=all&path=%2F%E6%88%91%E7%9A%84%E8%B5%84%E6%BA%90%2FJava_jar">百度网盘 (baidu.com)</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//注册驱动</span></span><br><span class="line">  Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取连接</span></span><br><span class="line">  String url=<span class="string">&quot;jdbc:mysql://localhost:3306/mydb?useSSL=false&quot;</span>;</span><br><span class="line">  String uName=<span class="string">&quot;root&quot;</span>;</span><br><span class="line">  String uPwd=<span class="string">&quot;123@qwe&quot;</span>;</span><br><span class="line">Connection conn= DriverManager.getConnection(url,uName,uPwd);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//定义sql</span></span><br><span class="line">  String sql=<span class="string">&quot;SELECT * from user where UserId=1&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取执行的sql的对象Statement</span></span><br><span class="line">  Statement stmt=conn.createStatement();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//执行Sql</span></span><br><span class="line">  ResultSet rs= stmt.executeQuery(sql);</span><br><span class="line">  <span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> rs.getInt(<span class="number">1</span>);</span><br><span class="line">      <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="number">2</span>);</span><br><span class="line">      <span class="type">String</span> <span class="variable">userPwd</span> <span class="operator">=</span> rs.getString(<span class="number">3</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;id:&quot;</span>+id+<span class="string">&quot; 姓名：&quot;</span>+name+<span class="string">&quot; 密码：&quot;</span>+userPwd);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//释放资源</span></span><br><span class="line">  rs.close();</span><br><span class="line">  stmt.close();</span><br><span class="line">  conn.close();</span><br></pre></td></tr></table></figure>
 
@@ -325,8 +340,29 @@
 <li>install:安装</li>
 </ul>
 <h4 id="Maven生命周期"><a href="#Maven生命周期" class="headerlink" title="Maven生命周期"></a>Maven生命周期</h4><p><img src="/2022/09/02/Java%20Web/image-20220904173809620.png" alt="image-20220904173809620"></p>
-<h4 id="Maven的坐标详解"><a href="#Maven的坐标详解" class="headerlink" title="Maven的坐标详解"></a>Maven的坐标详解</h4><p><img src="/2022/09/02/Java%20Web/Jimage-20220904202134953.png" alt="image-20220904202134953"></p>
+<h4 id="Maven的坐标详解"><a href="#Maven的坐标详解" class="headerlink" title="Maven的坐标详解"></a>Maven的坐标详解</h4><p><img src="/2022/09/02/Java%20Web/image-20220904202134953.png" alt="image-20220904202134953"></p>
 <h4 id="Maven的依赖"><a href="#Maven的依赖" class="headerlink" title="Maven的依赖"></a>Maven的依赖</h4><p><img src="/2022/09/02/Java%20Web/image-20220904203253950.png" alt="image-20220904203253950"></p>
+<h3 id="3-Mybits"><a href="#3-Mybits" class="headerlink" title="(3)Mybits"></a>(3)Mybits</h3><ol>
+<li><p>持久性框架，简化jdbc代码</p>
+</li>
+<li><p>mybits-config.xml配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span><br><span class="line">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;environments <span class="keyword">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span><br><span class="line">        &lt;environment id=<span class="string">&quot;development&quot;</span>&gt;</span><br><span class="line">            &lt;transactionManager type=<span class="string">&quot;JDBC&quot;</span>/&gt;</span><br><span class="line">            &lt;dataSource type=<span class="string">&quot;POOLED&quot;</span>&gt;</span><br><span class="line">                &lt;property name=<span class="string">&quot;driver&quot;</span> value=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span><br><span class="line">                &lt;property name=<span class="string">&quot;url&quot;</span> value=<span class="string">&quot;jdbc:mysql://localhost:3306/mydb?useSSL=false&quot;</span>/&gt;</span><br><span class="line">                &lt;property name=<span class="string">&quot;username&quot;</span> value=<span class="string">&quot;root&quot;</span>/&gt;</span><br><span class="line">                &lt;property name=<span class="string">&quot;password&quot;</span> value=<span class="string">&quot;123@qwe&quot;</span>/&gt;</span><br><span class="line">            &lt;/dataSource&gt;</span><br><span class="line">        &lt;/environment&gt;</span><br><span class="line">    &lt;/environments&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;!--加载sql映射文件--&gt;</span><br><span class="line">        &lt;!--<span class="number">1</span>--&gt;</span><br><span class="line">        &lt;!--&lt;mapper resource=<span class="string">&quot;com/azc/mapper/UserMapper.xml&quot;</span>/&gt;--&gt;</span><br><span class="line">        &lt;!--<span class="number">2</span>--&gt;</span><br><span class="line">        &lt;!--mapper代理方式--&gt;</span><br><span class="line">        &lt;<span class="keyword">package</span> name=<span class="string">&quot;com.azc.mapper&quot;</span>/&gt;</span><br><span class="line">    &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mapper代理开发</p>
+<p><img src="/2022/09/02/Java%20Web/image-20220905155330106.png" alt="image-20220905155330106"></p>
+</li>
+<li><p>Mybits核心配置</p>
+<p><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#">mybatis – MyBatis 3 | 配置</a></p>
+</li>
+<li><p>Mybits操作实例</p>
+<p>注意：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">数据库的字段名称和实体属性名称不一样，则不能自动封装</span><br><span class="line">   *起别名（用as）:对不一样的起别名，让别名和实体类的属性名一样</span><br><span class="line">      缺点：每次查询都要重新定义一次别名</span><br><span class="line">        *sql片段</span><br><span class="line">            &lt;sql id=<span class="string">&quot;brand_clumn&quot;</span>&gt;id，name&lt;/sql&gt;</span><br><span class="line">              缺点不灵活</span><br><span class="line">   *  resultMap:</span><br><span class="line">		流程:定义&lt;resultMap&gt;标签</span><br><span class="line">            在&lt;select&gt;标签中使用resultMap替换resulltType属性</span><br><span class="line">       id：唯一标识</span><br><span class="line">       type:映射类型，支持别名</span><br><span class="line">           ***</span><br><span class="line">           &lt;id&gt;&lt;/id&gt;-完成主键字段的映射</span><br><span class="line">              column:表的列名</span><br><span class="line">              property:实体类的属性名</span><br><span class="line">            &lt;result&gt;&lt;/result&gt;-完成一般字段的映射</span><br><span class="line">               column:表的列名</span><br><span class="line">               property:实体类的属性名</span><br><span class="line">                   </span><br><span class="line"><span class="number">1.</span> 参数类型：paramerType:可以省略</span><br><span class="line"><span class="number">2.</span> 特殊字符处理：</span><br><span class="line">   - 转义字符</span><br><span class="line">   - CDATA区：</span><br><span class="line">    &lt;![CDATA[</span><br><span class="line">       &lt; (此时为小于号) </span><br><span class="line">    ]]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>resultMap例子（方便理解）</p>
+<p><img src="/2022/09/02/Java%20Web/image-20220905175211180.png" alt="image-20220905175211180"></p>
+<p><img src="/2022/09/02/Java%20Web/image-20220905175255605.png" alt="image-20220905175255605"></p>
+</li>
+</ol>
 
     </div>
 
@@ -431,7 +467,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-Web"><span class="nav-number">1.</span> <span class="nav-text">Java Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-jdbc"><span class="nav-number">1.1.</span> <span class="nav-text">(1)jdbc</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DriverManager"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">DriverManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Connection"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Connection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Statement"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Statement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ResultSet"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">ResultSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">PreparedStatement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">数据库连接池</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Maven%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">(2)Maven配置以及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Maven配置及测试：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E4%BD%BF%E7%94%A8-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%EF%BC%9A"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Maven使用(常用命令)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">Maven生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%9A%84%E5%9D%90%E6%A0%87%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">Maven的坐标详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">Maven的依赖</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-Web"><span class="nav-number">1.</span> <span class="nav-text">Java Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-jdbc"><span class="nav-number">1.1.</span> <span class="nav-text">(1)jdbc</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DriverManager"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">DriverManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Connection"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Connection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Statement"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Statement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ResultSet"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">ResultSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">PreparedStatement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">数据库连接池</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Maven%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">(2)Maven配置以及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Maven配置及测试：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E4%BD%BF%E7%94%A8-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%EF%BC%9A"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Maven使用(常用命令)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">Maven生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%9A%84%E5%9D%90%E6%A0%87%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">Maven的坐标详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">Maven的依赖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Mybits"><span class="nav-number">1.1.2.</span> <span class="nav-text">(3)Mybits</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -508,12 +544,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">60k</span>
+    <span title="站点总字数">62k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">55 分钟</span>
+    <span title="站点阅读时长">57 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
